@@ -8,12 +8,11 @@
     }
 /*跨浏览器移除事件*/
     function removeEvent(obj,type,fn){
-        if(obj.removeEventListener){
+        if(obj.removeEventListener){    //W3C
             obj.removeEventListener(type,fn,false);
-        }//w3c
-        else if(obj.detachEvent){
+        }else if(obj.detachEvent){      //IE
             obj.detachEvent('on'+type,fn);
-        }//IE浏览器
+        }
     }
 
 /*获取ID*/
@@ -96,8 +95,67 @@
 
 
 
+//遮罩锁屏
+    function lock(elem){
+        var width=getInner().width;
+        var height=getInner().height;
+        elem.style.width=width+'px';
+        elem.style.height=height+'px';
+        elem.style.display='block';
+        getTag('body')[0].style.overflow='hidden';
+    }
+    function unlock(elem){
+        elem.style.display='none';
+        getTag('body')[0].style.overflow='auto';
+    }
 
+//鼠标拖拽事件
 
+  function drag(childElem,parentElem){
+      addEvent(childElem,'mousedown',function(e){
+          var diffX=e.clientX-parentElem.offsetLeft;
+          var diffY=e.clientY-parentElem.offsetTop;
+          addEvent(document,'mousemove',move);
+          addEvent(document,'mouseup',up);
+          function move(e){
+              var left=e.clientX-diffX;
+              var top=e.clientY-diffY;
+              if(left<=0){
+                  left=0;
+              }else if(left<=getScroll().left) {
+                  left=getScroll().left
+              }else if(left>=getInner().width-parentElem.offsetWidth){
+                  left=getInner().width-parentElem.offsetWidth+getScroll().left;
+              }
+              if(top<=0){
+                  top=0;
+              }else if(top<=getScroll().top){
+                  top=getScroll().top
+              }else if(top>=getInner().height-parentElem.offsetHeight){
+                  top=getInner().height-parentElem.offsetHeight+getScroll().top;
+              }
+              parentElem.style.left=left+'px';
+              parentElem.style.top=top+'px';
+              if(typeof parentElem.setCapture!='undefined'){
+                  parentElem.setCapture();
+              }
+          }
+          function up(){
+              removeEvent(document,'mousemove',move);
+              removeEvent(document,'mouseup',up);
+              if(typeof parentElem.releaseCapture!='undefined'){
+                  parentElem.releaseCapture();
+              }
+
+          }
+      });
+  }
+    
+//物体局中显示
+function center(elem){
+    elem.style.left=(getInner().width-elem.offsetWidth)/2+'px';
+    elem.style.top=(getInner().height-elem.offsetHeight)/2+'px';
+}
 
 
 

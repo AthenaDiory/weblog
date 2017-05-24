@@ -8,12 +8,6 @@ body{
     color:#333;
     background-color: #fff;
     width:100%;
-    overflow-x:hidden;
-}
-.header{
-    width:100%;
-    height: 30px;
-    background:url(../img/header_bg.png) repeat-x left top;
 }
 .main{
     width:1000px;
@@ -31,6 +25,11 @@ a{
     content:'...';
     height:0;
     overflow:hidden;
+}
+.header{
+    width:100%;
+    height:30px;
+    background:url(../img/header_bg.png) repeat-x left top;
 }
 /*网页头部*/
 .header .headerLogo{
@@ -74,6 +73,234 @@ a{
 .header .signIn{
     margin:0 10px;
 }
+.header .screen{
+    position:absolute;
+    left:0;
+    top:0;
+    background-color:black;
+    opacity:0.3;
+    filter:alpha(opacity=30);
+    z-index:900;
+    display:none;
+}
+/*登录*/
+.header .login{
+    width:350px;
+    height:250px;
+    position:absolute;
+    z-index:999;
+    background-color: #fff;
+    border:solid 1px #ccc;
+    display:none;
+}
+.header .login .loginHeader,.header .sign .signHeader{
+    color:#666;
+    background:url(../img/login_header.png) repeat-x;
+    text-align:center;
+    position:relative;
+    cursor:move;
+}
+.header .login .loginHeader,.header .sign .signHeader h2{
+    height:40px;
+    line-height:40px;
+}
+.header .login .loginHeader h2{
+    font-size:14px;
+    letter-spacing:1px;
+}
+.header .login .loginHeader img{
+    position:absolute;
+    top:13px;
+    right:10px;
+    cursor:pointer;
+}
+.header .login .loginCon .info{
+    padding:15px 0 5px 0;
+    text-align:center;
+    color:maroon;
+}
+.header .login .loginCon .user,.header .login .loginCon .password{
+    font-size:14px;
+    color:#666;
+    padding:8px 0;
+    text-align:center;
+}
+.header .login .loginCon .text{
+    width:200px;
+    height:25px;
+    font-size:14px;
+    text-indent:5px;
+    border:solid 1px #ccc;
+}
+.header .login .loginCon .button{
+    padding:15px 0;
+    text-align:center;
+    overflow:hidden;
+}
+.header .login .loginCon .button .submit{
+    width:107px;
+    height:30px;
+    background:url(../img/login_button.png) no-repeat 0 0;
+    border:none;
+    cursor:pointer;
+}
+.header .login .loginCon .other{
+    text-align:right;
+    margin:15px 10px;
+    color:#666;
+}
+.header .login .loginCon .other a{
+    color:#666;
+}
+/*注册*/
+.header .sign{
+    width:600px;
+    height:550px;
+    background-color: #fff;
+    border:solid 1px #ccc;
+    z-index:999;
+    position:absolute;
+    display:none;
+}
+.header .sign .signHeader{
+    height:40px;
+    line-height:40px;
+}
+.header .sign .signHeader .signClose{
+    position:absolute;
+    top:13px;
+    right:10px;
+    cursor:pointer;
+}
+.header .sign .signCon{
+    padding:10px 0 0 25px;
+    position:relative;
+}
+.header .sign .signCon dd{
+    height:30px;
+    padding:5px 0;
+}
+.header .sign .signCon dd,.header .sign .signCon  .text,.header .sign .signCon select,.header .sign .signCo  textarea{
+    font-size:14px;
+    color:#666;
+}
+.header .sign .signCon dd .text,.header .sign .signCon dd .signSel{
+    width:200px;
+    height:25px;
+    line-height:25px;
+}
+.header .sign .signCon dd textarea{
+    width: 360px;
+    height: 100px;
+    position:absolute;
+    top:0;
+    left:74px;
+}
+.header .sign .signCon dd .button{
+    width:143px;
+    height:33px;
+    background:url(../img/reg.png) no-repeat 0 0;
+    border:none;
+    margin-left:150px;
+    cursor:pointer;
+}
+.header .sign .signCon dd span{
+    width:165px;
+    height:32px;
+    line-height:32px;
+    font-size:12px;
+    color:#333;
+    padding-left:35px;
+    position:absolute;
+    left:310px;
+    display:none;
+}
+.header .sign .signCon dd span.info{
+    background:url(../img/reg_info.png) no-repeat;
+}
+.header .sign .signCon dd span.error{
+    background:url(../img/reg_error.png) no-repeat;
+}
+.header .sign .signCon dd span.succ{
+    background:url(../img/reg_succ.png) no-repeat left center;
+    padding-left:20px;
+}
+.header .sign .signCon dd span.info_user{
+    height:50px;
+    line-height:23px;
+    padding-top:4px;
+    background:url(../img/reg_info2.png) no-repeat;
+    top:8px;
+}
+.header .sign .signCon dd span.error_user{
+    top:12px;
+}
+.header .sign .signCon dd span.succ_user{
+    top:12px;
+}
+.header .sign .signCon dd span.loading{
+    background:url(../img/loading2.gif) no-repeat left center;
+    top:12px;
+    padding-left:20px;
+}
+.header .sign .signCon dd span.info_pass{
+    width:244px;
+    height:102px;
+    padding:4px 0 0 16px;
+    background:url(../img/reg_info3.png) no-repeat;
+    top:14px;
+}
+.header .sign .signCon dd span p{
+    height:25px;
+    line-height:25px;
+    color:#666;
+}
+.header .sign .signCon dd span .s{
+   color:rgb(204,204,204);
+}
+.header .sign .signCon dd span.error_pass,.header .sign .signCon dd span.succ_pass{
+    top:53px;
+}
+.header .sign .signCon dd span.info_passfirm,.header .sign .signCon dd span.error_passfirm,.header .sign .signCon dd span.succ_passfirm{
+    top:92px;
+}
+.header .sign .signCon dd span.error_ques{
+    top:133px;
+}
+.header .sign .signCon dd span.info_ans,.header .sign .signCon dd span.error_ans,.header .sign .signCon dd span.succ_ans{
+    top:174px;
+}
+.header .sign .signCon dd span.info_email,.header .sign .signCon dd span.error_email,.header .sign .signCon dd span.succ_email{
+    top:215px;
+}
+.header .sign .signCon dd span.error_birth{
+    top:250px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*网页主体*/
 .middle .nav{
     width:465px;
@@ -126,18 +353,53 @@ a{
 .middle .nav .navBg ul a{
     color:#fff;
 }
+/*中部侧边导航栏*/
+.middle .sidebar{
+    width:250px;
+    height:500px;
+    float:left;
+}
+.middle .sidebar .sidebarItem{
+    margin-bottom:10px;
+}
+.middle .sidebar .sidebarItem h2{
+    font-size:14px;
+    width:248px;
+    height:30px;
+    line-height:30px;
+    background:url(../img/side_h.png) repeat-x;
+    border:solid 1px #ccc;
+    text-indent:10px;
+}
+.middle .sidebar .sidebarItem ul{
+    padding:5px 10px;
+    border:solid 1px #ccc;
+    display:block;
+    border-top:none;
+}
+.middle .sidebar .sidebarItem ul li{
+    text-indent:17px;
+    background:url(../img/arrow4.gif) no-repeat left center;
+    margin:9px 0;
+}
+.middle .sidebar .sidebarItem ul li a{
+    color:#333;
+}
+.middle .sidebar .sidebarItem ul li a:hover{
+    color:red;
+}
 
 
 
 
 
 
-
-
-
-
-
-
+.middle .index{
+    width:630px;
+    height:570px;
+    float:right;
+    background-color:red;
+}
 /*侧边栏分享*/
 .share{
     width:210px;
@@ -147,7 +409,7 @@ a{
     position:absolute;
     left:-210px;
     top:0;
-    z-index:999;
+    z-index:2;
 }
 .share .shareHeader h3{
     height:30px;
