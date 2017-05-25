@@ -159,7 +159,11 @@ function center(elem){
 
 
 
+//清除空格
 
+function trim(str){
+    return str.replace(/(^\s*)|(\s*$)/g,'');
+}
 
 
 

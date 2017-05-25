@@ -51,7 +51,6 @@ addEvent(window,'load',function(){
             }
         });
     }
-
     /*登录界面*/
     var logIn=getClass('logIn')[0];
     var screen=getClass('screen')[0];
@@ -102,11 +101,358 @@ addEvent(window,'load',function(){
             center(sign);
         }
     });
-    //关闭登录界面
+    //关闭注册界面
     addEvent(signClose,'click',function(){
         unlock(screen);
         sign.style.display='none';
     });
+    /*注册验证*/
+    var username=getId('username');
+    var info_user=getClass('info_user')[0];
+    var error_user=getClass('error_user')[0];
+    var succ_user=getClass('succ_user')[0];
+    var loading=getClass('loading')[0];
+    //验证用户名
+    addEvent(username,'focus',function(){
+        info_user.style.display='block';
+        error_user.style.display='none';
+        succ_user.style.display='none';
+    });
+    addEvent(username,'blur',function(){
+        if(this.value==''){
+            info_user.style.display='none';
+            error_user.style.display='none';
+            succ_user.style.display='none';
+            loading.style.display='none';
+        }else if(!check_user()){
+            error_user.style.display='block';
+            info_user.style.display='none';
+            succ_user.style.display='none';
+            loading.style.display='none';
+        }else{
+            succ_user.style.display='block';
+            info_user.style.display='none';
+            error_user.style.display='none';
+            loading.style.display='none';
+        }
+    });
+    function check_user(){
+        var flag=false;
+        if(!/[\w]{2,20}/.test(trim(username.value))){
+            flag=false;
+        }else{
+            flag=true;
+        }
+        return flag;
+    }
+    //验证密码
+    var pass=getId('pass');
+    var info_pass=getClass('info_pass')[0];
+    var error_pass=getClass('error_pass')[0];
+    var succ_pass=getClass('succ_pass')[0];
+    addEvent(pass,'focus',function(){
+        info_pass.style.display='block';
+        error_pass.style.display='none';
+        succ_pass.style.display='none';
+    });
+    addEvent(pass,'blur',function(){
+       if(this.value==''){
+           info_pass.style.display='none';
+           error_pass.style.display='none';
+           succ_pass.style.display='none';
+       }else if(!check_pass()){
+           error_pass.style.display='block';
+           info_pass.style.display='none';
+           succ_pass.style.display='none';
+       }else{
+           succ_pass.style.display='block';
+           info_pass.style.display='none';
+           error_pass.style.display='none';
+       }
+    });
+    addEvent(pass,'keyup',check_pass);
+    function check_pass(){
+        var q1=getClass('q1')[0];
+        var q2=getClass('q2')[0];
+        var q3=getClass('q3')[0];
+        var s1=getClass('s1')[0];
+        var s2=getClass('s2')[0];
+        var s3=getClass('s3')[0];
+        var s4=getClass('s4')[0];
+        var value=trim(pass.value);
+        var num=0;
+        if(/[a-z]/g.test(value)){
+            num++;
+        }
+        if(/[A-Z]/g.test(value)){
+            num++;
+        }
+        if(/[0-9]/g.test(value)){
+            num++;
+        }
+        if (/[^\w]/.test(value)) {
+            num++;
+        }
+        if(value.length>=6&&value.length<=20){
+            q1.style.color='green';
+        }else{
+            q1.style.color='#fff';
+        }
+        if(num>0&&!(/\s/.test(value))){
+            q2.style.color='green';
+        }else{
+            q2.style.color='#fff';
+        }
+        if(num>=2){
+            q3.style.color='green';
+        }else{
+            q3.style.color='#fff';
+        }
+        if (value.length >= 10 && num >= 3) {
+            s1.style.color='green';
+            s2.style.color='green';
+            s3.style.color='green';
+            s4.innerHTML='高';
+            s4.style.color='green';
+        } else if (value.length >= 8 && num >= 2) {
+            s1.style.color='#f60';
+            s2.style.color='#f60';
+            s3.style.color='#ccc';
+            s4.innerHTML='中';
+            s4.style.color='#f60';
+        } else if (value.length >= 1) {
+            s1.style.color='maroon';
+            s2.style.color='#ccc';
+            s3.style.color='#ccc';
+            s4.innerHTML='低';
+            s4.style.color='maroon';
+        } else {
+            s1.style.color='#ccc';
+            s2.style.color='#ccc';
+            s3.style.color='#ccc';
+            s4.innerHTML='';
+        }
+        if (value.length>= 6 && value.length<= 20 && !/\s/.test(value) && num >= 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //密码确认
+    var passfirm=getId('passfirm');
+    var info_passfirm=getClass('info_passfirm')[0];
+    var error_passfirm=getClass('error_passfirm')[0];
+    var succ_passfirm=getClass('succ_passfirm')[0];
+    addEvent(passfirm,'focus',function(){
+        info_passfirm.style.display='block';
+        error_passfirm.style.display='none';
+        succ_passfirm.style.display='none';
+    });
+    addEvent(passfirm,'blur',check_passfirm);
+    function check_passfirm(){
+        if(passfirm.value==''){
+            succ_passfirm.style.display='none';
+            info_passfirm.style.display='none';
+            error_passfirm.style.display='none';
+            return false;
+        }else if(passfirm.value==pass.value&&passfirm.value!=''){
+            succ_passfirm.style.display='block';
+            info_passfirm.style.display='none';
+            error_passfirm.style.display='none';
+            return true;
+        }else{
+            succ_passfirm.style.display='none';
+            info_passfirm.style.display='none';
+            error_passfirm.style.display='block';
+            return false;
+        }
+    }
+    //选择提问
+    var signSel=getId('signSel');
+    var error_ques=getClass('error_ques')[0];
+    function check_signSel(){
+        if(trim(signSel.value)==0){
+            error_ques.style.display='block';
+            return false;
+        }else{
+            error_ques.style.display='none';
+            return true;
+        }
+    }
+    //回答
+    var answer=getId('answer');
+    var info_ans=getClass('info_ans')[0];
+    var error_ans=getClass('error_ans')[0];
+    var succ_ans=getClass('succ_ans')[0];
+    addEvent(answer,'focus',function(){
+        if(answer.value==''){
+            info_ans.style.display='block';
+            error_ans.style.display='none';
+            succ_ans.style.display='none';
+        }
+    });
+    addEvent(answer,'blur',check_answer);
+    function check_answer(){
+        if(answer.value==''){
+            succ_ans.style.display='none';
+            info_ans.style.display='none';
+            error_ans.style.display='none';
+            return false;
+        }else if(trim(answer.value).length>=2&&trim(answer.value).length<=32){
+             succ_ans.style.display='block';
+             info_ans.style.display='none';
+             error_ans.style.display='none';
+             return true;
+         }else{
+             succ_ans.style.display='none';
+             info_ans.style.display='none';
+             error_ans.style.display='block';
+         }
+    }
+    //验证电子邮箱
+    var email=getId('email');
+    var info_email=getClass('info_email')[0];
+    var error_email=getClass('error_email')[0];
+    var succ_email=getClass('succ_email')[0];
+    var all_email=getClass('all_email')[0];
+    var all_email_span=all_email.getElementsByTagName('span');
+    var all_email_li=all_email.getElementsByTagName('li');
+    addEvent(email,'focus',function(){
+        if(email.value==''){
+            info_email.style.display='block';
+            error_email.style.display='none';
+            succ_email.style.display='none';
+        }
+        if(email.value.indexOf('@')==-1) {
+            all_email.style.display = 'block';
+        }
+    });
+    addEvent(email,'blur',function(){
+        check_email();
+        all_email.style.display='none';
+    });
+    addEvent(email,'keyup',function(e){
+        //邮箱快捷键
+        if(email.value.indexOf('@')==-1){
+            all_email.style.display='block';
+            for(var j=0;j<all_email_li.length;j++){
+                all_email_li[j].className='';
+            }
+            for(var i=0;i<all_email_span.length;i++){
+                all_email_span[i].innerHTML=email.value;
+            }
+            if(e.keyCode==40){
+                if(email.index==undefined||email.index>=all_email_span.length-1){
+                    email.index=0;
+                }else{
+                    email.index++;
+                }
+                all_email_li[email.index].className='on';
+            }
+            if(e.keyCode==38){
+                if(email.index==undefined||email.index<=0){
+                    email.index=all_email_li.length-1;
+                }else{
+                    email.index--;
+                }
+                all_email_li[email.index].className='on';
+            }
+            if(e.keyCode==13){
+                email.value=all_email_li[email.index].innerText;
+                all_email.style.display = 'none';
+                email.index=undefined;
+            }
+        }else{
+            all_email.style.display='none';
+        }
+    });
+    for(var k=0;k<all_email_li.length;k++){
+        addEvent(all_email_li[k],'mousedown',function(){
+            email.value=this.innerText;
+            all_email.style.display = 'none';
+            email.index=undefined;
+        })
+    }
+    function check_email(){
+        if(email.value==''){
+            info_email.style.display='none';
+            error_email.style.display='none';
+            succ_email.style.display='none';
+            return false;
+        }else if(/^[\w\-\.]+@[\w\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test(trim(email.value))){
+            info_email.style.display='none';
+            error_email.style.display='none';
+            succ_email.style.display='block';
+            return true;
+        }else{
+            info_email.style.display='none';
+            error_email.style.display='block';
+            succ_email.style.display='none';
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+    //备注
+    var add=getId('add');
+    var signLeft1=getClass('signLeft')[0];
+    var ps1=getClass('ps')[0];
+    var signLeft2=getClass('signLeft')[1];
+    var ps2=getClass('ps')[1];
+    var ps_clear=getClass('ps_clear')[0];
+    addEvent(add,'keyup',function(){
+        if(add.value.length<=200){
+            ps1.style.display='block';
+            ps2.style.display='none';
+            signLeft1.innerHTML=200-add.value.length;
+        }else{
+            ps2.style.display='block';
+            ps1.style.display='none';
+            signLeft2.innerHTML=add.value.length-200;
+        }
+    });
+    addEvent(ps_clear,'click',function(){
+        add.value=add.value.substring(0,200);
+        ps2.style.display='none';
+        ps1.style.display='block';
+    });
+    //注册按钮点击事件
+    var signSub=getClass('signSub')[0];
+    var button=signSub.getElementsByClassName('button')[0];
+    addEvent(button,'click',function(){
+       var flag=true;
+       if(!check_user()){
+           flag=false;
+           error_user.style.display='block';
+       }
+       if(!check_pass()){
+           flag=false;
+           error_pass.style.display='block';
+       }
+       if(!check_passfirm()){
+           flag=false;
+           error_passfirm.style.display='block';
+       }
+       if(!check_signSel()){
+           flag=false;
+           error_ques.style.display='block';
+       }
+       if(!check_answer()){
+           flag=false;
+           error_ans.style.display='block';
+       }
+       if(!check_email()){
+           flag=false;
+           error_email.style.display='block';
+       }
+    });
+
 
 
 

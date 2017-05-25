@@ -204,7 +204,7 @@ a{
     margin-left:150px;
     cursor:pointer;
 }
-.header .sign .signCon dd span{
+.header .sign .signCon dd span.info,.header .sign .signCon dd span.error,.header .sign .signCon dd span.succ{
     width:165px;
     height:32px;
     line-height:32px;
@@ -258,6 +258,9 @@ a{
 .header .sign .signCon dd span .s{
    color:rgb(204,204,204);
 }
+.header .sign .signCon dd span .q{
+    color:#fff;
+}
 .header .sign .signCon dd span.error_pass,.header .sign .signCon dd span.succ_pass{
     top:53px;
 }
@@ -276,8 +279,29 @@ a{
 .header .sign .signCon dd span.error_birth{
     top:250px;
 }
-
-
+.header .sign .signCon dd .all_email{
+    width: 180px;
+    height: 130px;
+    background: #fff;
+    padding: 5px 10px;
+    position: absolute;
+    top: 242px;
+    left: 99px;
+    border: 1px solid #ccc;
+    z-index:4;
+    display:none;
+}
+.header .sign .signCon dd .all_email li{
+    height: 25px;
+    line-height: 25px;
+    border-bottom: 1px solid #e5edf2;
+    padding: 0 5px;
+    cursor: pointer;
+}
+.header .sign .signCon dd .all_email li.on,.header .sign .signCon dd .all_email li:hover{
+    background-color:rgb(229,237,242);
+    color:#369;
+}
 
 
 

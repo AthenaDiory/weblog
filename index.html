@@ -68,16 +68,16 @@
                         <span class="info info_user">请输入用户名，2~20位，由字母、数字和下划线组成！</span>
                         <span class="error error_user">输入不合法，请重新输入！</span>
                         <span class="succ succ_user">可用</span>
-                        <span class="loading">正在检测用户名...</span>
+                        <span class="loading" style="display:none;">正在检测用户名...</span>
                     </dd>
                     <dd>
                         <label for="pass">密<s style="display:inline-block;padding:0 14px;"></s>码：</label>
                         <input type="password" class="text" id="pass" name="pass">
                         <span class="info info_pass">
                             <p>安全级别：<strong class="s s1">■</strong><strong class="s s2">■</strong><strong class="s s3">■</strong> <strong class="s s4" style="font-weight:normal;"></strong></p>
-                            <p><strong class="q1" style="font-weight:normal;">○</strong> 6-20 个字符</p>
-                            <p><strong class="q2" style="font-weight:normal;">○</strong> 只能包含大小写字母、数字和非空格字符</p>
-                            <p><strong class="q3" style="font-weight:normal;">○</strong> 大、小写字母、数字、非空字符，2种以上</p>
+                            <p><strong class="q q1" style="font-weight:normal;">●</strong> 6-20 个字符</p>
+                            <p><strong class="q q2" style="font-weight:normal;" >●</strong> 只能包含大小写字母、数字和非空格字符</p>
+                            <p><strong class="q q3" style="font-weight:normal;">●</strong> 大、小写字母、数字、非空字符，2种以上</p>
                         </span>
                         <span class="error error_pass">输入不合法，请重新输入！</span>
                         <span class="succ succ_pass">可用</span>
@@ -110,6 +110,13 @@
                     <dd>
                         <label for="email">电子邮件：</label>
                         <input type="text" class="text" id="email" name="email">
+                        <ul class="all_email">
+                            <li class=""><span></span>@qq.com</li>
+                            <li class=""><span></span>@163.com</li>
+                            <li class=""><span></span>@sohu.com</li>
+                            <li class=""><span></span>@sina.com.cn</li>
+                            <li class=""><span></span>@gmail.com</li>
+                        </ul>
                         <span class="info info_email">请输入电子邮件！</span>
                         <span class="error error_email">邮件不合法，请重新输入！</span>
                         <span class="succ succ_email">可用</span>
@@ -131,8 +138,12 @@
                         <label for="add" style="position:absolute;left:0;top:0;">备<s style="display:inline-block;padding:0 14px;"></s>注：</label>
                         <textarea name="add" id="add" cols="30" rows="10"></textarea>
                     </dd>
-                    <dd style="text-indent:300px;">
-                        还可以输入<span class="signLeft" style="font-weight:bold;padding:0 2px;">200</span>字
+                    <dd style="text-indent:300px;display:block;" class="ps">
+                        还可以输入<i class="signLeft" style="font-style:normal;font-weight:bold;padding:0 2px;">200</i>字
+                    </dd>
+                    <dd style="text-indent:300px;display:none;" class="ps">
+                        已超过<i class="signLeft" style="font-style:normal;color:red;font-weight:bold;padding:0 2px;"></i>字，
+                        <a href="javascript:void(0);" class="ps_clear">清尾</a>
                     </dd>
                     <dd class="signSub">
                         <input type="button" class="button">
