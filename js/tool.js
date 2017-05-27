@@ -97,8 +97,8 @@
 
 //遮罩锁屏
     function lock(elem){
-        var width=getInner().width;
-        var height=getInner().height;
+        var width=getInner().width+getScroll().left;
+        var height=getInner().height+getScroll().top;
         elem.style.width=width+'px';
         elem.style.height=height+'px';
         elem.style.display='block';
@@ -124,14 +124,14 @@
                   left=0;
               }else if(left<=getScroll().left) {
                   left=getScroll().left
-              }else if(left>=getInner().width-parentElem.offsetWidth){
+              }else if(left>=getInner().width-parentElem.offsetWidth+getScroll().left){
                   left=getInner().width-parentElem.offsetWidth+getScroll().left;
               }
               if(top<=0){
                   top=0;
               }else if(top<=getScroll().top){
                   top=getScroll().top
-              }else if(top>=getInner().height-parentElem.offsetHeight){
+              }else if(top>=getInner().height-parentElem.offsetHeight+getScroll().top){
                   top=getInner().height-parentElem.offsetHeight+getScroll().top;
               }
               parentElem.style.left=left+'px';
@@ -153,8 +153,8 @@
     
 //物体局中显示
 function center(elem){
-    elem.style.left=(getInner().width-elem.offsetWidth)/2+'px';
-    elem.style.top=(getInner().height-elem.offsetHeight)/2+'px';
+    elem.style.left=(getInner().width-elem.offsetWidth)/2+getScroll().left+'px';
+    elem.style.top=(getInner().height-elem.offsetHeight)/2+getScroll().top+'px';
 }
 
 

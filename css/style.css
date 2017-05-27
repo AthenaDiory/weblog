@@ -12,6 +12,7 @@ body{
 .main{
     width:1000px;
     margin:0 auto;
+    overflow:hidden;
 }
 ul{
     list-style:none;
@@ -93,22 +94,22 @@ a{
     border:solid 1px #ccc;
     display:none;
 }
-.header .login .loginHeader,.header .sign .signHeader{
+.header .login .loginHeader,.header .sign .signHeader,.middle .bigImg .imgHeader{
     color:#666;
     background:url(../img/login_header.png) repeat-x;
     text-align:center;
     position:relative;
     cursor:move;
 }
-.header .login .loginHeader,.header .sign .signHeader h2{
+.header .login .loginHeader,.header .sign .signHeader,.middle .bigImg .imgHeader{
     height:40px;
     line-height:40px;
 }
-.header .login .loginHeader h2{
+.header .login .loginHeader h2,.header .sign .signHeader h2,.middle .bigImg .imgHeader h2{
     font-size:14px;
     letter-spacing:1px;
 }
-.header .login .loginHeader img{
+.header .login .loginHeader img,.middle .bigImg .imgHeader img{
     position:absolute;
     top:13px;
     right:10px;
@@ -303,28 +304,6 @@ a{
     color:#369;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*网页主体*/
 .middle .nav{
     width:465px;
@@ -412,18 +391,169 @@ a{
 .middle .sidebar .sidebarItem ul li a:hover{
     color:red;
 }
-
-
-
-
-
-
 .middle .index{
     width:630px;
     height:570px;
     float:right;
-    background-color:red;
 }
+.middle .carousel{
+    width:900px;
+    height:150px;
+    float:left;
+    margin:10px 0;
+    position:relative;
+    overflow:hidden;
+}
+.middle .carousel .wrap{
+    width:2700px;
+    height:150px;
+    position:absolute;
+    left:0;
+    top:0;
+}
+.middle .carousel img{
+    width:900px;
+    height:150px;
+    float:left;
+}
+.middle .carousel span{
+    display:block;
+    width:900px;
+    height:25px;
+    background-color:#333;
+    opacity:0.3;
+    filter:alpha(opacity=30);
+    position:absolute;
+    bottom:0;
+    left:0;
+    z-index:3;
+}
+.middle .carousel ul{
+    z-index:4;
+    position:absolute;
+    bottom:3px;
+    left:410px;
+}
+.middle .carousel ul li{
+    color:rgb(153,153,153);
+    float:left;
+    padding:0 5px;
+    cursor:pointer;
+    font-size:16px;
+}
+.middle .carousel ul li:hover{
+    color:rgb(51,51,51);
+}
+.middle .carousel strong{
+    position:absolute;
+    bottom:3px;
+    left:10px;
+    z-index:4;
+    color:#fff;
+    display:none;
+}
+.middle .imgGallery{
+    width:900px;
+    float:left;
+    padding:10px;
+}
+.middle .imgGallery dl{
+    width:225px;
+    height:270px;
+    float:left;
+    margin:5px 0 15px 0;
+}
+.middle .imgGallery dl dd{
+    width: 200px;
+    height:250px;
+    margin:0 auto;
+    cursor:pointer;
+}
+.middle .imgGallery dl dt{
+    height:25px;
+    line-height:25px;
+    text-align:center;
+}
+.middle .bigImg{
+    width:620px;
+    height:511px;
+    border:solid 1px #ccc;
+    background-color: #fff;
+    z-index:999;
+    position:absolute;
+    display:none;
+}
+.middle .bigImg .imgCon{
+    width:620px;
+    height:460px;
+    padding:10px 0 0 0;
+    background-color:#333;
+    position:relative;
+}
+.middle .bigImg .imgCon img{
+    display:block;
+    margin:0 auto;
+    position:relative;
+    top:190px;
+}
+.middle .bigImg .imgCon .big{
+    width:600px;
+    height:450px;
+    top:0;
+}
+
+
+.middle .bigImg .imgCon strong{
+    width:100px;
+    height:100px;
+    font-size:70px;
+    line-height:100px;
+    color:#fff;
+    background-color:#000;
+    position:absolute;
+    text-align:center;
+    opacity:0.5;
+    filter:alpha(opacity=300);
+    cursor:pointer;
+    display:block;
+}
+.middle .bigImg .imgCon strong.sl{
+    left:20px;
+    top:180px;
+}
+.middle .bigImg .imgCon strong.sr{
+    right:20px;
+    top:180px;
+}
+.middle .bigImg .imgCon span{
+    width:300px;
+    height:450px;
+    background-color:#000;
+    opacity:0;
+    filter:alpha(opacity=0);
+    position:absolute;
+    cursor:pointer;
+}
+.middle .bigImg .imgCon span.left{
+    left:10px;
+    top:10px;
+}
+.middle .bigImg .imgCon span.right{
+    right:10px;
+    top:10px;
+}
+.middle .bigImg .imgCon em{
+    font-size:14px;
+    color:#fff;
+    font-style:normal;
+    position:absolute;
+    right:20px;
+    bottom:20px;
+}
+
+
+
+
 /*侧边栏分享*/
 .share{
     width:210px;
@@ -431,7 +561,7 @@ a{
     border:solid 1px #ccc;
     background-color: #fff;
     position:absolute;
-    left:-210px;
+    left:-211px;
     top:0;
     z-index:2;
 }
@@ -538,7 +668,18 @@ a{
     cursor:pointer;
 }
 
-
+/*尾部*/
+.footer{
+    width:100%;
+    background-color: #fff;
+}
+.footer .main{
+    padding:5px 0;
+}
+.footer .main p{
+    line-height:20px;
+    text-align:center;
+}
 
 
 

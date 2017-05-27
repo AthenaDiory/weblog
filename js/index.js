@@ -11,46 +11,6 @@ addEvent(window,'load',function(){
         this.style.background='url(img/arrow.png) no-repeat right 13px';
         proUl.style.display='none';
     });
-    /*主体导航栏导航滑动*/
-    var navBg=getClass('navBg')[0];
-    var white=navBg.getElementsByClassName('white')[0];
-    var topLi=getClass('top')[0].getElementsByTagName('li');
-    var navBgW=parseInt(getStyle(navBg,'width'));
-    var navBg_currLeft=parseInt(getStyle(navBg,'left'));
-    var white_currLeft=parseInt(getStyle(white,'left'));
-    /*导航栏滑动*/
-    for(var i=0;i<topLi.length;i++) {
-        topLi[i].setAttribute('index', i);
-        addEvent(topLi[i],'mouseover',function(){
-            var currIndex = this.getAttribute('index');
-            var navBg_target=currIndex * navBgW + navBg_currLeft;
-            var white_target=white_currLeft-(currIndex) * navBgW;
-            moveElem(navBg,navBg_target,0,20);
-            moveElem(white,white_target,0,20);
-        });
-        addEvent(topLi[i],'mouseout',function(){
-            moveElem(navBg,navBg_currLeft,0,20);
-            moveElem(white,white_currLeft,0,20);
-        })
-    }
-    /*中部左侧导航slide*/
-    var sidebar=getClass('sidebar')[0];
-    var sidebar_h2=sidebar.getElementsByTagName('h2');
-    for(var j=0;j<sidebar_h2.length;j++){
-        addEvent(sidebar_h2[j],'click',function(){
-            if(this.nextSibling.nodeName=='#text'){
-                //清理空格，浏览器将换行也当做DOM元素
-                var sidebar_ul=this.nextSibling.nextSibling;
-            }else{
-                 sidebar_ul=this.nextSibling;
-            }
-            if(getStyle(sidebar_ul,'display')=='block'){
-                sidebar_ul.style.display='none';
-            }else{
-                sidebar_ul.style.display='block';
-            }
-        });
-    }
     /*登录界面*/
     var logIn=getClass('logIn')[0];
     var screen=getClass('screen')[0];
@@ -60,11 +20,11 @@ addEvent(window,'load',function(){
         lock(screen);               //锁屏
         login.style.display='block';
         center(login);              //局中显示
-
+        /*登录界面拖拽事件*/
+        var h2=login.getElementsByTagName('h2')[0];
+        drag(h2,login);
     });
-    /*登录界面拖拽事件*/
-    var h2=login.getElementsByTagName('h2')[0];
-    drag(h2,login);
+
     /*改变浏览器视口事件*/
     addEvent(window,'resize',function(){
         if(getStyle(screen,'display')=='block'){
@@ -88,10 +48,10 @@ addEvent(window,'load',function(){
         lock(screen);               //锁屏
         sign.style.display='block';
         center(sign);
+        /*注册界面拖拽事件*/
+        var signH2=sign.getElementsByTagName('h2')[0];
+        drag(signH2,sign);
     });
-    /*注册界面拖拽事件*/
-    var signH2=sign.getElementsByTagName('h2')[0];
-    drag(signH2,sign);
     /*改变浏览器视口事件*/
     addEvent(window,'resize',function(){
         if(getStyle(screen,'display')=='block'){
@@ -392,13 +352,6 @@ addEvent(window,'load',function(){
         }
     }
 
-
-
-
-
-
-
-
     //备注
     var add=getId('add');
     var signLeft1=getClass('signLeft')[0];
@@ -452,7 +405,213 @@ addEvent(window,'load',function(){
            error_email.style.display='block';
        }
     });
+/*网页主体*/
+    /*主体导航栏导航滑动*/
+    var navBg=getClass('navBg')[0];
+    var white=navBg.getElementsByClassName('white')[0];
+    var topLi=getClass('top')[0].getElementsByTagName('li');
+    var navBgW=parseInt(getStyle(navBg,'width'));
+    var navBg_currLeft=parseInt(getStyle(navBg,'left'));
+    var white_currLeft=parseInt(getStyle(white,'left'));
+    /*导航栏滑动*/
+    for(var i=0;i<topLi.length;i++) {
+        topLi[i].setAttribute('index', i);
+        addEvent(topLi[i],'mouseover',function(){
+            var currIndex = this.getAttribute('index');
+            var navBg_target=currIndex * navBgW + navBg_currLeft;
+            var white_target=white_currLeft-(currIndex) * navBgW;
+            moveElem(navBg,navBg_target,0,20);
+            moveElem(white,white_target,0,20);
+        });
+        addEvent(topLi[i],'mouseout',function(){
+            moveElem(navBg,navBg_currLeft,0,20);
+            moveElem(white,white_currLeft,0,20);
+        })
+    }
+    /*中部左侧导航slide*/
+    var sidebar=getClass('sidebar')[0];
+    var sidebar_h2=sidebar.getElementsByTagName('h2');
+    for(var j=0;j<sidebar_h2.length;j++){
+        addEvent(sidebar_h2[j],'click',function(){
+            if(this.nextSibling.nodeName=='#text'){
+                //清理空格，浏览器将换行也当做DOM元素
+                var sidebar_ul=this.nextSibling.nextSibling;
+            }else{
+                sidebar_ul=this.nextSibling;
+            }
+            if(getStyle(sidebar_ul,'display')=='block'){
+                sidebar_ul.style.display='none';
+            }else{
+                sidebar_ul.style.display='block';
+            }
+        });
+    }
 
+    //轮播器
+    var carousel=getClass('carousel')[0];
+    var carousel_wrap=carousel.getElementsByClassName('wrap')[0];
+    var carousel_li=carousel.getElementsByTagName('li');
+    var carousel_str=carousel.getElementsByTagName('strong');
+    carousel_li.index=0;
+    carousel.timer=setInterval(function(){
+        hideInfo(carousel_li,carousel_str,carousel_li.index);
+        carousel_li.index++;
+        if(carousel_li.index==3){
+            carousel_li.index=0;
+        }
+        var left=-(carousel_li.index*900);
+        showInfo(carousel_li,carousel_str,left,carousel_li.index);
+    },1000);
+    for(let l=0;l<carousel_li.length;l++){
+        addEvent(carousel_li[l],'mouseover',function(){
+            for(var m=0;m<carousel_li.length;m++){
+                hideInfo(carousel_li,carousel_str,m);
+            }
+            clearInterval(carousel.timer);
+            var left=-(l*900);
+            showInfo(carousel_li,carousel_str,left,l);
+
+        });
+        addEvent(carousel_li[l],'mouseout',function(){
+            carousel.timer=setInterval(function(){
+                hideInfo(carousel_li,carousel_str,carousel_li.index);
+                carousel_li.index++;
+                if(carousel_li.index==3){
+                    carousel_li.index=0;
+                }
+                var left=-(carousel_li.index*900);
+                showInfo(carousel_li,carousel_str,left,carousel_li.index);
+            },1000);
+        });
+    }
+    //轮播器显示附加信息
+    function showInfo(li,str,x_pos,index){
+        carousel_wrap.style.left=x_pos+'px';
+        li[index].style.color='rgb(51,51,51)';
+        str[index].style.display='block';
+    }
+    function hideInfo(li,str,index){
+        li[index].style.color='rgb(153,153,153)';
+        str[index].style.display='none';
+    }
+
+    /*图片加载*/
+
+    var  wait_load=getClass('wait_load');
+    var bigImg=getClass('bigImg')[0];
+    var img_close=getClass('img_close')[0];
+    var img_sl=bigImg.getElementsByClassName('sl')[0];
+    var img_sr=bigImg.getElementsByClassName('sr')[0];
+    var img_left=bigImg.getElementsByClassName('left')[0];
+    var img_right=bigImg.getElementsByClassName('right')[0];
+    var img_em=bigImg.getElementsByTagName('em')[0];
+    var bigImg_img=bigImg.getElementsByTagName('img')[1];
+    var img_src=bigImg_img.getAttribute('src');
+    for(let n=0;n<wait_load.length;n++){
+        //延迟加载图片
+        addEvent(window,'scroll',function(){
+            if(getScroll().top+getInner().height>wait_load[n].offsetTop){
+                setTimeout(function(){
+                    var xsrc=wait_load[n].getAttribute('xsrc');
+                    wait_load[n].setAttribute('src',xsrc);
+                },500);
+            }
+        });
+        //预加载图片
+        addEvent(wait_load[n],'click',function(){
+            var _this=this;
+            var curr_index=n;
+            lock(screen);               //锁屏
+            bigImg.style.display='block';
+            center(bigImg);
+            //大图界面拖拽事件
+            var bigImg_h2=bigImg.getElementsByTagName('h2')[0];
+            drag(bigImg_h2,bigImg);
+            //显示左右键
+            addEvent(img_left,'mouseover',function(){
+                img_sl.style.display='block';
+            });
+            addEvent(img_right,'mouseover',function(){
+                img_sr.style.display='block';
+            });
+            //点击图片
+            var temp_img=new Image();
+            temp_img.src=_this.getAttribute('bigsrc');
+            bigImg_img.setAttribute('src',temp_img.src);
+            bigImg_img.className='big';
+            img_em.innerHTML=curr_index+1+'/12';
+            //预加载
+            function pre(){
+                var curr_left=curr_index;
+                if(curr_left-1<0){
+                    curr_left=12;
+                }
+                var pre_img=wait_load[curr_left-1].getAttribute('bigsrc');
+                img_left.setAttribute('src',pre_img);
+            }
+            pre();
+            function next(){
+                var curr_right=curr_index;
+                if(curr_right==11){
+                    curr_right=-1;
+                }
+                var pre_img=wait_load[curr_right+1].getAttribute('bigsrc');
+                img_right.setAttribute('src',pre_img);
+            }
+            next();
+            //上一张
+            addEvent(img_left,'click',function(){
+                if(curr_index==0){
+                    curr_index=11;
+                }else{
+                    curr_index--;
+                }
+                pre();
+                temp_img.src=img_left.getAttribute('src');
+                bigImg_img.setAttribute('src',temp_img.src);
+                img_em.innerHTML=curr_index+1+'/12';
+            });
+            //下一张
+            addEvent(img_right,'click',function(){
+                if(curr_index==11){
+                    curr_index=0;
+                }else{
+                    curr_index++;
+                }
+                next();
+                temp_img.src=img_right.getAttribute('src');
+                bigImg_img.setAttribute('src',temp_img.src);
+                img_em.innerHTML=curr_index+1+'/12';
+            });
+
+            //隐藏左右键
+            addEvent(img_left,'mouseout',function(){
+                img_sl.style.display='none';
+            });
+            addEvent(img_right,'mouseout',function(){
+                img_sr.style.display='none';
+            });
+        });
+
+        /*改变浏览器视口事件*/
+        addEvent(window,'resize',function(){
+            if(getStyle(screen,'display')=='block'){
+                lock(screen);
+            }
+            if(getInner().width-bigImg.offsetLeft<=bigImg.offsetWidth||getInner().height-bigImg.offsetTop<=bigImg.offsetHeight){
+                center(bigImg);
+            }
+        });
+        //关闭登录界面
+        addEvent(img_close,'click',function(){
+            unlock(screen);
+            bigImg.style.display='none';
+            bigImg_img.className='';
+            bigImg_img.setAttribute('src',img_src);
+        });
+    }
+
+    
 
 
 
@@ -471,7 +630,7 @@ addEvent(window,'load',function(){
     });
     addEvent(share,'mouseout',function(){
         var share_target_y=share.offsetTop;
-        var share_target_x=-210;
+        var share_target_x=-211;
         moveElem(share,share_target_x,share_target_y,10);
     });
     //侧边栏分享垂直居中
