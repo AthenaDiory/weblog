@@ -461,14 +461,17 @@ addEvent(window,'load',function(){
         var left=-(carousel_li.index*900);
         showInfo(carousel_li,carousel_str,left,carousel_li.index);
     },1000);
-    for(let l=0;l<carousel_li.length;l++){
+
+    for(var l=0;l<carousel_li.length;l++){
+        carousel_li[l].setAttribute('index',l);
         addEvent(carousel_li[l],'mouseover',function(){
+            var li_index=parseInt(this.getAttribute('index'));
             for(var m=0;m<carousel_li.length;m++){
                 hideInfo(carousel_li,carousel_str,m);
             }
             clearInterval(carousel.timer);
-            var left=-(l*900);
-            showInfo(carousel_li,carousel_str,left,l);
+            var left=-(li_index*900);
+            showInfo(carousel_li,carousel_str,left,li_index);
 
         });
         addEvent(carousel_li[l],'mouseout',function(){
@@ -518,6 +521,7 @@ addEvent(window,'load',function(){
                 }
             },500);
     });
+
     //预加载图片
     for(var n=0;n<wait_load.length;n++){
             wait_load[n].setAttribute('index',n);
@@ -613,13 +617,6 @@ addEvent(window,'load',function(){
             bigImg_img.setAttribute('src',img_src);
         });
     }
-
-    
-
-
-
-
-
 
 
 
