@@ -12,7 +12,6 @@ body{
 .main{
     width:1000px;
     margin:0 auto;
-    overflow:hidden;
 }
 ul{
     list-style:none;
@@ -55,11 +54,10 @@ a{
     position:absolute;
     top:30px;
     left:-20px;
-    background: #FBF7E1;
+    background-color:#FBF7E1;
     border:solid 1px #999;
     border-top:0;
     padding:10px 0 0 0;
-    z-index:999;
     display:none;
 }
 .header .profile ul li{

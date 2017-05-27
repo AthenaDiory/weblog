@@ -166,6 +166,18 @@ function trim(str){
 }
 
 
+//获取某一个元素到最外层顶点的位置
+function offsetTop(element) {
+    var top = element.offsetTop;
+    var parent = element.offsetParent;
+    while (parent != null) {
+        top += parent.offsetTop;
+        parent = parent.offsetParent;
+    }
+    return top;
+}
+
+
 
 
 
