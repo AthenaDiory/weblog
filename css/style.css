@@ -301,6 +301,35 @@ a{
     background-color:rgb(229,237,242);
     color:#369;
 }
+.header .ajax{
+    width:200px;
+    height:40px;
+    background: url(../img/login_header.png);
+    position:absolute;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    z-index:10000;
+    display:none;
+    left:583px;
+    top:297px;
+}
+.header .ajax p{
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    text-indent: 50px;
+}
+.header .loading p{
+    background:url(../img/loading3.gif) no-repeat 20px center;
+}
+.header .success p{
+    background:url(../img/success.gif) no-repeat 20px center;
+}
+
+
+
 
 /*网页主体*/
 .middle .nav{
@@ -549,9 +578,6 @@ a{
     bottom:20px;
 }
 
-
-
-
 /*侧边栏分享*/
 .share{
     width:210px;
@@ -561,7 +587,7 @@ a{
     position:absolute;
     left:-211px;
     top:0;
-    z-index:2;
+    z-index:999;
 }
 .share .shareHeader h3{
     height:30px;

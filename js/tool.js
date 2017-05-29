@@ -27,6 +27,10 @@
     function getTag(tag){
         return document.getElementsByTagName(tag);
     }
+/*获取name*/
+function getName(name){
+    return document.getElementsByName(name);
+}
 
 /*获取计算后的样式*/
     function getStyle(element,attr){
@@ -178,6 +182,102 @@ function offsetTop(element) {
 }
 
 
+//封装Ajax
+
+function ajax(obj){
+    var xhr;
+    if(window.XMLHttpRequest){  //IE7+,W3C
+        xhr=new XMLHttpRequest();
+    }else{  //IE6,IE5
+        xhr=new ActiveXObject();
+    }
+    obj.url=obj.url+'?rand='+Math.random();
+    obj.data = (function (data) {
+        var arr = [];
+        for (var i in data) {
+            arr.push(encodeURIComponent(i) + '=' + encodeURIComponent(data[i]));
+        }
+        return arr.join('&');
+    })(obj.data);
+    if(obj.method=='GET') obj.url+=obj.url.indexOf('?')==-1? '?'+obj.data: '&'+obj.data;
+    if (obj.async === true) {
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                callback();
+            }
+        };
+    }
+    xhr.open(obj.method, obj.url, obj.async);
+    if (obj.method === 'POST') {
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(obj.data);
+    } else {
+        xhr.send(null);
+    }
+    if (obj.async === false) {
+        callback();
+    }
+    function callback() {
+        if (xhr.status == 200) {
+            obj.success(xhr.responseText);			//回调传递参数
+        } else {
+            alert('获取数据错误！错误代号：' + xhr.status + '，错误信息：' + xhr.statusText);
+        }
+    }
+}
+
+
+//表单序列化
+var form=document.forms[0];
+function serialize(form){
+    var len=form.elements.length;//表单字段长度;表单字段包括<input><select><button>等
+    var parts=[];//保存字符串将要创建的各个部分
+    var opLen,//select中option的个数
+        opValue;//select中option的值
+    var field=null;//用来存储每一条表单字段
+    //遍历每一个表单字段
+    for(var i=0;i<len;i++){
+        field=form.elements[i];
+        switch(field.type){
+            case"select-one":
+            case"select-multiple":
+                if(field.name.length){
+                    for(var j=0,opLen=field.options.length;j<opLen;j++){
+                        option=field.options[j];
+                        if(option.selected){
+                            opValue='';
+                            if(option.hasAttribute){
+                                opValue=(option.hasAttribute('value')?option.value:option.text);
+                            }else{
+                                opValue=(option.hasAttribute['value'].specified?option.value:option.text);//IE下
+                            }
+                            parts.push(encodeURIComponent(field.name)+'='+encodeURIComponent(opValue));
+                        }
+
+                    }
+                }
+                break;
+            case undefined:
+            case"file":
+            case"submit":
+            case"reset":
+            case"button":
+                break;
+            case"radio":
+            case"checkbox":
+                if(!field.checked){
+                    break;
+                }
+            default:
+                if(field.name.length){
+                    parts.push(encodeURIComponent(field.name)+'='+encodeURIComponent(opValue));
+
+                }
+                break;
+        }
+    }
+    return parts.join("&");
+}
 
 
 

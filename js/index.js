@@ -66,6 +66,7 @@ addEvent(window,'load',function(){
         sign.style.display='none';
     });
     /*注册验证*/
+    var signForm=getName('signForm')[0];
     var username=getId('username');
     var info_user=getClass('info_user')[0];
     var error_user=getClass('error_user')[0];
@@ -96,13 +97,30 @@ addEvent(window,'load',function(){
         }
     });
     function check_user(){
-        var flag=false;
+        var flag=true;
         if(!/[\w]{2,20}/.test(trim(username.value))){
-            flag=false;
+            error_user.innerHTML='输入不合法，请重新输入！';
+            return false;
         }else{
-            flag=true;
-        }
-        return flag;
+            loading.style.display='inline-block';
+            info_user.style.display='none';
+            ajax({
+                method:'post',
+                url:'test_user.php',
+                data:serialize(signForm),
+                success:function(text){
+                    if(text==1){
+                        error_user.innerHTML='用户名已占用！';
+                        flag=false;
+                }else{
+                    flag=true;
+                }
+                    loading.style.display='none';
+                },
+                async:false
+            });
+         }
+    return flag;
     }
     //验证密码
     var pass=getId('pass');
@@ -378,6 +396,7 @@ addEvent(window,'load',function(){
     var signSub=getClass('signSub')[0];
     var button=signSub.getElementsByClassName('button')[0];
     addEvent(button,'click',function(){
+        var _this=this;
        var flag=true;
        if(!check_user()){
            flag=false;
@@ -403,6 +422,44 @@ addEvent(window,'load',function(){
            flag=false;
            error_email.style.display='block';
        }
+        //调用ajax
+        if(flag){
+            var loading=getClass('loading')[1];
+            var success=getClass('success')[0];
+            var success_p=success.getElementsByTagName('p')[0];
+            var username=getName('username');
+            loading.style.display='block';
+            center(loading);
+            _this.disabled=true;
+            _this.style.backgroundPosition='right';
+            ajax({
+                method:'POST',
+                url:'add.php',
+                data:{
+                    'username':username
+                },
+                success:function(text){
+                    if(text==1){
+                        success.style.display='block';
+                        center(success);
+                        success_p.innerHTML='注册完成，请登录！';
+                        setTimeout(function(){
+                            sign.style.display='none';
+                            loading.style.display='none';
+                            success.style.display='none';
+                            screen.style.display='none';
+                            _this.disabled=false;
+                            _this.style.backgroundPosition='left';
+                            signForm.reset();
+                        },1000);
+                    }
+                },
+                async:true
+            })
+
+        }
+
+
     });
 /*网页主体*/
     /*主体导航栏导航滑动*/
@@ -649,6 +706,14 @@ addEvent(window,'load',function(){
               share.style.top=ypos+'px';
         },50)
     });
+
+
+
+
+
+
+
+
 
 
 

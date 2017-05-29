@@ -60,7 +60,7 @@
                 <img src="img/close.png" alt="" class="signClose">
             </div>
             <div class="signCon clearfix">
-                <form action="" name="signForm" class="signForm">
+                <form action="" method="post" name="signForm" class="signForm">
                     <dl>
                     <dd>
                         <label for="username">用<s style="display:inline-block;padding:0 4px 0 3px;"></s>户<s style="display:inline-block;padding:0 4px 0 3px;"></s>名：</label>
@@ -91,7 +91,7 @@
                     </dd>
                     <dd>
                         提<s style="display:inline-block;padding:0 14px;"></s>问：
-                        <select name="" id="signSel" class="signSel">
+                        <select  id="signSel" class="signSel" name="ques">
                                     <option value="0">----请选择----</option>
                                     <option value="1">--您最喜欢吃的饭</option>
                                     <option value="2">--您的狗狗的名字</option>
@@ -153,6 +153,14 @@
             </div>
         </div>
         <!--注册界面end-->
+        <!--异步加载start-->
+        <div class="loading ajax">
+            <p>正在加载</p>
+        </div>
+        <div class="success ajax">
+            <p>加载成功</p>
+        </div>
+        <!--异步加载end-->
     </div>
 <!--头部end-->
 <!--网页主体start-->
