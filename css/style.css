@@ -38,7 +38,7 @@ a{
     float:left;
     background:url(../img/logo.gif) no-repeat left top;
 }
-.header .profile,.header .signIn,.header .logIn{
+.header .profile,.signIn,.header .logIn{
     float:right;
     cursor:pointer;
     line-height:30px;
@@ -60,13 +60,13 @@ a{
     padding:10px 0 0 0;
     display:none;
 }
-.header .profile ul li{
+.header .profile li{
     height:25px;
     line-height:25px;
     text-indent:20px;
     background:url(../img/arrow3.gif) no-repeat 5px center;
 }
-.header .profile ul li:hover{
+.header .profile li:hover{
     background:orange url(../img/arrow4.gif) no-repeat 5px center;
 }
 .header .signIn{
@@ -103,52 +103,52 @@ a{
     height:40px;
     line-height:40px;
 }
-.header .login .loginHeader h2,.header .sign .signHeader h2,.middle .bigImg .imgHeader h2{
+.login .loginHeader h2,.sign .signHeader h2,.middle .imgHeader h2{
     font-size:14px;
     letter-spacing:1px;
 }
-.header .login .loginHeader img,.middle .bigImg .imgHeader img{
+.login .loginHeader img,.middle .imgHeader img{
     position:absolute;
     top:13px;
     right:10px;
     cursor:pointer;
 }
-.header .login .loginCon .info{
+.login .loginCon .info{
     padding:15px 0 5px 0;
     text-align:center;
     color:maroon;
 }
-.header .login .loginCon .user,.header .login .loginCon .password{
+.login .loginCon .user,.login .loginCon .password{
     font-size:14px;
     color:#666;
     padding:8px 0;
     text-align:center;
 }
-.header .login .loginCon .text{
+.login .loginCon .text{
     width:200px;
     height:25px;
     font-size:14px;
     text-indent:5px;
     border:solid 1px #ccc;
 }
-.header .login .loginCon .button{
+.login .loginCon .button{
     padding:15px 0;
     text-align:center;
     overflow:hidden;
 }
-.header .login .loginCon .button .submit{
+.login .loginCon .submit{
     width:107px;
     height:30px;
     background:url(../img/login_button.png) no-repeat 0 0;
     border:none;
     cursor:pointer;
 }
-.header .login .loginCon .other{
+.login .loginCon .other{
     text-align:right;
     margin:15px 10px;
     color:#666;
 }
-.header .login .loginCon .other a{
+.login .other a{
     color:#666;
 }
 /*注册*/
@@ -161,41 +161,41 @@ a{
     position:absolute;
     display:none;
 }
-.header .sign .signHeader{
+.sign .signHeader{
     height:40px;
     line-height:40px;
 }
-.header .sign .signHeader .signClose{
+.sign .signHeader .signClose{
     position:absolute;
     top:13px;
     right:10px;
     cursor:pointer;
 }
-.header .sign .signCon{
+.sign .signCon{
     padding:10px 0 0 25px;
     position:relative;
 }
-.header .sign .signCon dd{
+.sign .signCon dd{
     height:30px;
     padding:5px 0;
 }
-.header .sign .signCon dd,.header .sign .signCon  .text,.header .sign .signCon select,.header .sign .signCo  textarea{
+.sign .signCon dd,.sign .signCon  .text,.sign .signCon select,.sign .signCo  textarea{
     font-size:14px;
     color:#666;
 }
-.header .sign .signCon dd .text,.header .sign .signCon dd .signSel{
+.sign .signCon .text,.sign .signCon .signSel{
     width:200px;
     height:25px;
     line-height:25px;
 }
-.header .sign .signCon dd textarea{
+.sign .signCon textarea{
     width: 360px;
     height: 100px;
     position:absolute;
     top:0;
     left:74px;
 }
-.header .sign .signCon dd .button{
+.sign .signCon .button{
     width:143px;
     height:33px;
     background:url(../img/reg.png) no-repeat 0 0;
@@ -203,7 +203,7 @@ a{
     margin-left:150px;
     cursor:pointer;
 }
-.header .sign .signCon dd span.info,.header .sign .signCon dd span.error,.header .sign .signCon dd span.succ{
+.sign .signCon span.info,.sign .signCon span.error,.sign .signCon span.succ{
     width:165px;
     height:32px;
     line-height:32px;
@@ -214,50 +214,50 @@ a{
     left:310px;
     display:none;
 }
-.header .sign .signCon dd span.info{
+.sign .signCon span.info{
     background:url(../img/reg_info.png) no-repeat;
 }
-.header .sign .signCon dd span.error{
+.sign .signCon span.error{
     background:url(../img/reg_error.png) no-repeat;
 }
-.header .sign .signCon dd span.succ{
+.sign .signCon span.succ{
     background:url(../img/reg_succ.png) no-repeat left center;
     padding-left:20px;
 }
-.header .sign .signCon dd span.info_user{
+.sign .signCon span.info_user{
     height:50px;
     line-height:23px;
     padding-top:4px;
     background:url(../img/reg_info2.png) no-repeat;
     top:8px;
 }
-.header .sign .signCon dd span.error_user{
+.sign .signCon span.error_user{
     top:12px;
 }
-.header .sign .signCon dd span.succ_user{
+.sign .signCon span.succ_user{
     top:12px;
 }
-.header .sign .signCon dd span.loading{
+.sign .signCon span.loading{
     background:url(../img/loading2.gif) no-repeat left center;
     top:12px;
     padding-left:20px;
 }
-.header .sign .signCon dd span.info_pass{
+.sign .signCon span.info_pass{
     width:244px;
     height:102px;
     padding:4px 0 0 16px;
     background:url(../img/reg_info3.png) no-repeat;
     top:14px;
 }
-.header .sign .signCon dd span p{
+.sign span p{
     height:25px;
     line-height:25px;
     color:#666;
 }
-.header .sign .signCon dd span .s{
+.sign span .s{
    color:rgb(204,204,204);
 }
-.header .sign .signCon dd span .q{
+.sign span .q{
     color:#fff;
 }
 .header .sign .signCon dd span.error_pass,.header .sign .signCon dd span.succ_pass{
@@ -517,20 +517,18 @@ a{
     background-color:#333;
     position:relative;
 }
-.middle .bigImg .imgCon img{
+.bigImg .imgCon img{
     display:block;
     margin:0 auto;
     position:relative;
     top:190px;
 }
-.middle .bigImg .imgCon .big{
+.bigImg .imgCon .big{
     width:600px;
     height:450px;
     top:0;
 }
-
-
-.middle .bigImg .imgCon strong{
+.bigImg .imgCon strong{
     width:100px;
     height:100px;
     font-size:70px;
@@ -544,15 +542,15 @@ a{
     cursor:pointer;
     display:block;
 }
-.middle .bigImg .imgCon strong.sl{
+.bigImg .imgCon strong.sl{
     left:20px;
     top:180px;
 }
-.middle .bigImg .imgCon strong.sr{
+.bigImg .imgCon strong.sr{
     right:20px;
     top:180px;
 }
-.middle .bigImg .imgCon span{
+.bigImg .imgCon span{
     width:300px;
     height:450px;
     background-color:#000;
@@ -561,15 +559,15 @@ a{
     position:absolute;
     cursor:pointer;
 }
-.middle .bigImg .imgCon span.left{
+.bigImg .imgCon span.left{
     left:10px;
     top:10px;
 }
-.middle .bigImg .imgCon span.right{
+.bigImg .imgCon span.right{
     right:10px;
     top:10px;
 }
-.middle .bigImg .imgCon em{
+.bigImg .imgCon em{
     font-size:14px;
     color:#fff;
     font-style:normal;
@@ -601,13 +599,13 @@ a{
     padding-left:10px;
     overflow:hidden;
 }
-.share .shareCon ul li{
+.share .shareCon li{
     width:96px;
     height:28px;
     float:left;
     padding: 2px;
 }
-.share .shareCon ul li a{
+.share .shareCon a{
     width:96px;
     height:28px;
     display:block;
@@ -616,55 +614,55 @@ a{
     background:url(../img/share_bg.png) no-repeat;
     text-indent:23px;
 }
-.share .shareCon ul li a:hover{
+.share .shareCon a:hover{
     color:blue;
 }
-.share .shareCon ul li a.n1{
+.share .shareCon a.n1{
     background-position:0 6px;
 }
-.share .shareCon ul li a.n2{
+.share .shareCon a.n2{
     background-position:0 -23px;
 }
-.share .shareCon ul li a.n3{
+.share .shareCon a.n3{
     background-position:0 -53px;
 }
-.share .shareCon ul li a.n4{
+.share .shareCon a.n4{
     background-position:0 -82px;
 }
-.share .shareCon ul li a.n5{
+.share .shareCon a.n5{
     background-position:0 -114px;
 }
-.share .shareCon ul li a.n6{
+.share .shareCon a.n6{
     background-position:0 -143px;
 }
-.share .shareCon ul li a.n7{
+.share .shareCon a.n7{
     background-position:0 -173px;
 }
-.share .shareCon ul li a.n8{
+.share .shareCon a.n8{
     background-position:0 -203px;
 }
-.share .shareCon ul li a.n9{
+.share .shareCon a.n9{
     background-position:0 -235px;
 }
-.share .shareCon ul li a.n10{
+.share .shareCon a.n10{
     background-position:0 -264px;
 }
-.share .shareCon ul li a.n11{
+.share .shareCon a.n11{
     background-position:0 -295px;
 }
-.share .shareCon ul li a.n12{
+.share .shareCon a.n12{
     background-position:0 -325px;
 }
-.share .shareCon ul li a.n13{
+.share .shareCon a.n13{
     background-position:0 -355px;
 }
-.share .shareCon ul li a.n14{
+.share .shareCon a.n14{
     background-position:0 -384px;
 }
-.share .shareCon ul li a.n15{
+.share .shareCon a.n15{
     background-position:0 -414px;
 }
-.share .shareCon ul li a.n16{
+.share .shareCon a.n16{
     background-position:0 -443px;
 }
 .share .shareFooter{
